@@ -11,8 +11,9 @@
     "xml-js": "^1.6.11"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.8.2",
-    "@typescript-eslint/parser": "^4.8.2",
+    "@typescript-eslint/eslint-plugin": "^4.9.0",
+    "@typescript-eslint/parser": "^4.9.0",
+    "cpx": "^1.5.0",
     "electron": "^11.0.3",
     "electron-builder": "^22.9.1",
     "eslint": "^7.14.0",
@@ -20,13 +21,12 @@
     "eslint-plugin-import": "^2.22.1",
     "prettier": "^2.2.1",
     "ts-node-dev": "^1.0.0",
-    "typescript": "^4.1.2",
-    "cpx": "^1.5.0"
+    "typescript": "^4.1.2"
   },
   "scripts": {
     "build": "tsc && yarn copyfiles",
     "watch": "tsc -w",
-    "lint": "eslint -c .eslintrc --ext .ts ./src",
+    "lint": "eslint -c .eslintrc.js --ext .ts ./src",
     "start": "npm run build && electron ./dist/index.js",
     "dist": "yarn build && electron-builder",
     "copyfiles": "cpx ./src/frontend/**/* ./dist/frontend"
