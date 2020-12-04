@@ -1,0 +1,71 @@
+{
+  "name": "dashfile",
+  "version": "1.2.2",
+  "description": "Create files from Geometry Dash levels, and add them to your game with this simple program.",
+  "main": "dist/index.js",
+  "repository": "https://github.com/etstringy/dashfile",
+  "author": "etstringy",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^3.5.1",
+    "xml-js": "^1.6.11"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.8.2",
+    "@typescript-eslint/parser": "^4.8.2",
+    "electron": "^11.0.3",
+    "electron-builder": "^22.9.1",
+    "eslint": "^7.14.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "prettier": "^2.2.1",
+    "ts-node-dev": "^1.0.0",
+    "typescript": "^4.1.2",
+    "cpx": "^1.5.0"
+  },
+  "scripts": {
+    "build": "yarn copyfiles && tsc",
+    "watch": "tsc -w",
+    "lint": "eslint -c .eslintrc --ext .ts ./src",
+    "start": "npm run build && electron ./dist/index.js",
+    "dist": "yarn build && electron-builder",
+    "copyfiles": "cpx ./src/frontend/**/* ./dist/frontend"
+  },
+  "build": {
+    "appId": "software.stringy.dashfile",
+    "productName": "Dashfile",
+    "copyright": "Copyright © 2020 Stringy Software",
+    "files": [
+      "dist/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets",
+      "app": "./",
+      "output": "build"
+    },
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "dashfile-icon.png",
+      "legalTrademarks": "Copyright © 2020 Stringy Software",
+      "publisherName": "Stringy Software"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true,
+      "runAfterFinish": false,
+      "createDesktopShortcut": true
+    },
+    "fileAssociations": [
+      {
+        "ext": "dash",
+        "name": "Dash",
+        "description": "Geometry Dash Level",
+        "icon": "dashfile-icon.png"
+      }
+    ]
+  }
+}
