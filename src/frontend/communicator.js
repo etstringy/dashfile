@@ -18,6 +18,7 @@ window.onload = async () => {
   // [TEST] Get File
   let LocalLevels = await ipcRenderer.invoke("GJ_GetLevelFile");
   LocalLevels = JSON.parse(LocalLevels);
+  console.log(LocalLevels);
 
   let rawLevels = LocalLevels.elements[0].elements[0].elements[1].elements;
   let levels = [];
@@ -25,7 +26,6 @@ window.onload = async () => {
   for (var i = 2; i < rawLevels.length; i++) {
     if (i % 2 != 0) levels.push(rawLevels[i]);
   }
-  console.log(levels);
 
   levels.forEach((levelobject, levelIndex) => {
     let level = {
@@ -51,10 +51,18 @@ window.onload = async () => {
         </tr>
     `);
   });
+  console.log(levels[0]);
 
   window.LocalLevels = LocalLevels;
 };
 
 async function createFile(i) {
-  await ipcRenderer.invoke("GJ_MakeDashFile", window.LocalLevels[i]);
+  await ipcRenderer.invoke("GJ_MakeDashFile", {
+    declaration: {
+      attributes: {
+        version: "1.0",
+      },
+    },
+    elements: window.LocalLevels[i],
+  });
 }
