@@ -24,7 +24,7 @@
     "cpx": "^1.5.0"
   },
   "scripts": {
-    "build": "yarn copyfiles && tsc",
+    "build": "tsc && yarn copyfiles",
     "watch": "tsc -w",
     "lint": "eslint -c .eslintrc --ext .ts ./src",
     "start": "npm run build && electron ./dist/index.js",
