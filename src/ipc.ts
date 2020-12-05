@@ -47,6 +47,16 @@ function GJ_IPC(): void {
       return "OK";
     }
   );
+
+  ipcMain.handle(
+    "GJ_InjectDashFile",
+    async (e: Electron.IpcMainInvokeEvent, ...args) => {
+      const openPath: string | undefined = dialog.showSaveDialogSync({
+        title: "Save dash file as",
+        filters: [{ name: "Dashfile", extensions: ["dash"] }],
+      });
+    }
+  );
 }
 
 export default GJ_IPC;

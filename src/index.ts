@@ -1,6 +1,6 @@
-import { app, BrowserWindow } from 'electron';
-import path from 'path';
-import GJ_IPC from './ipc';
+import { app, BrowserWindow } from "electron";
+import path from "path";
+import GJ_IPC from "./ipc";
 
 function init() {
   const window = new BrowserWindow({
@@ -12,10 +12,10 @@ function init() {
     resizable: false,
   });
   // and load the index.html of the app.
-  window.loadFile(path.join(__dirname, './frontend/index.html'));
+  window.loadFile(path.join(__dirname, "../frontend/index.html"));
 }
 
-app.on('ready', () => {
+app.on("ready", () => {
   init();
 });
 

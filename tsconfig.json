@@ -12,6 +12,6 @@
     "resolveJsonModule": true,
     "esModuleInterop": true
   },
-  "include": ["src"]
+  "include": ["src", "frontend"]
   // "exclude": ["package.json"]
 }

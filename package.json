@@ -24,14 +24,13 @@
     "typescript": "^4.1.2"
   },
   "scripts": {
-    "build": "tsc && yarn copyfiles",
+    "build": "tsc",
     "watch": "tsc -w",
     "lint": "eslint -c .eslintrc.js --ext .ts ./src",
     "start": "npm run build && electron ./dist/index.js",
     "dist": "yarn build && electron-builder",
-    "copyfiles": "cpx ./src/frontend/**/* ./dist/frontend",
-    "ci_makedirs": "mkdir dist && cd dist && mkdir frontend && cd ..",
-    "ci_compile": "cp ./src/frontend/**/* ./dist/frontend && tsc",
+    "ci_makedirs": "mkdir dist",
+    "ci_compile": "tsc",
     "ci": "npm run ci_makedirs && npm run ci_compile && electron-builder build --windows"
   },
   "build": {
@@ -40,7 +39,8 @@
     "productName": "Dashfile",
     "copyright": "Copyright © 2020 Stringy Software",
     "files": [
-      "dist/**/*"
+      "dist/**/*",
+      "frontend/**/*"
     ],
     "directories": {
       "buildResources": "assets",
@@ -52,7 +52,7 @@
     },
     "win": {
       "target": "nsis",
-      "icon": "dashfile-icon.png",
+      "icon": "dashfile_logo.png",
       "legalTrademarks": "Copyright © 2020 Stringy Software",
       "publisherName": "Stringy Software"
     },
@@ -68,7 +68,7 @@
         "ext": "dash",
         "name": "Dash",
         "description": "Geometry Dash Level",
-        "icon": "dashfile-icon.png"
+        "icon": "dashfile_logo.png"
       }
     ]
   }
