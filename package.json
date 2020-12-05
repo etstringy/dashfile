@@ -29,10 +29,12 @@
     "lint": "eslint -c .eslintrc.js --ext .ts ./src",
     "start": "npm run build && electron ./dist/index.js",
     "dist": "yarn build && electron-builder",
-    "copyfiles": "cpx ./src/frontend/**/* ./dist/frontend"
+    "copyfiles": "cpx ./src/frontend/**/* ./dist/frontend",
+    "ci": "mkdir dist && cpx -v ./src/frontend/**/* ./dist/frontend && tsc"
   },
   "build": {
     "appId": "software.stringy.dashfile",
+    "artifactName": "DashfileSetup.${ext}",
     "productName": "Dashfile",
     "copyright": "Copyright © 2020 Stringy Software",
     "files": [
