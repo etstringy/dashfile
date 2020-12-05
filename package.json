@@ -31,7 +31,7 @@
     "dist": "yarn build && electron-builder",
     "ci_makedirs": "mkdir dist",
     "ci_compile": "tsc",
-    "ci": "npm run ci_makedirs && npm run ci_compile && electron-builder build --windows"
+    "ci": "npm run ci_makedirs && npm run ci_compile && electron-builder build --windows -p never"
   },
   "build": {
     "appId": "software.stringy.dashfile",

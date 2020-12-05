@@ -23,8 +23,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-        env:
-          GH_TOKEN: ${{ secrets.GH_BUILD_SECRET }}
       - run: npm i
       - run: npm run ci
 
