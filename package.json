@@ -32,7 +32,7 @@
     "copyfiles": "cpx ./src/frontend/**/* ./dist/frontend",
     "ci_makedirs": "mkdir dist && cd dist && mkdir frontend && cd ..",
     "ci_compile": "cp ./src/frontend/**/* ./dist/frontend && tsc",
-    "ci": "npm run ci_makedirs && npm run ci_compile && electron-builder"
+    "ci": "npm run ci_makedirs && npm run ci_compile && electron-builder build --windows"
   },
   "build": {
     "appId": "software.stringy.dashfile",
