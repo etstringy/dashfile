@@ -29,19 +29,17 @@ function GJ_IPC(): void {
     async (e: Electron.IpcMainInvokeEvent, ...args) => {
       console.log("[IPC] Recieved GJ_MakeDashFile");
 
-      const levelDataJSON: JSON = args[0];
-      const levelDataXML: string = convert.json2xml(
-        JSON.stringify(levelDataJSON)
-      );
-
+      const levelData: string = args.join();
+      console.log("DEBUG - " + args.length);
       const savePath: string | undefined = dialog.showSaveDialogSync({
         title: "Save dash file as",
+        filters: [{ name: "Dashfile", extensions: ["dash"] }],
       });
 
       if (savePath == undefined) return "Operation cancelled.";
 
       try {
-        fs.writeFileSync(savePath, levelDataXML);
+        fs.writeFileSync(savePath, levelData);
       } catch (err) {
         return "Error writing file!";
       }

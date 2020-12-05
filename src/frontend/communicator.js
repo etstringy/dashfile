@@ -54,15 +54,21 @@ window.onload = async () => {
   console.log(levels[0]);
 
   window.LocalLevels = LocalLevels;
+  window.levels = levels;
 };
 
 async function createFile(i) {
-  await ipcRenderer.invoke("GJ_MakeDashFile", {
-    declaration: {
-      attributes: {
-        version: "1.0",
-      },
-    },
-    elements: window.LocalLevels[i],
-  });
+  await ipcRenderer.invoke(
+    "GJ_MakeDashFile",
+    btoa(
+      JSON.stringify({
+        declaration: {
+          attributes: {
+            version: "1.0",
+          },
+        },
+        elements: window.levels[i],
+      })
+    )
+  );
 }
