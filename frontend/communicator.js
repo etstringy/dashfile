@@ -74,17 +74,5 @@ async function createFile(i) {
 }
 
 async function injectFile() {
-  // await ipcRenderer.invoke(
-  //   "GJ_MakeDashFile",
-  //   btoa(
-  //     JSON.stringify({
-  //       declaration: {
-  //         attributes: {
-  //           version: "1.0",
-  //         },
-  //       },
-  //       elements: window.levels[i],
-  //     })
-  //   )
-  // );
+  await ipcRenderer.invoke("GJ_InjectDashFile");
 }
