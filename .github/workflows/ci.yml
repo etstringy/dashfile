@@ -29,4 +29,9 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: DashfileSetup.exe
-          path: ./build/
+          path: ./build/DashfileSetup.exe
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: DashfileStandalone
+          path: ./build/win-unpacked
