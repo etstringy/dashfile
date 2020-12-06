@@ -25,7 +25,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm i
       - env:
-        GH_TOKEN: {{ secrets.ACCESS_TOKEN }}
+          GH_TOKEN: {{ secrets.ACCESS_TOKEN }}
       - run: npm run ci
 
       - uses: actions/upload-artifact@v2
