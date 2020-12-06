@@ -9,6 +9,7 @@
     "paths": {
       "*": ["node_modules/*"]
     },
+    "strictNullChecks": false,
     "resolveJsonModule": true,
     "esModuleInterop": true
   },

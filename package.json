@@ -61,7 +61,8 @@
       "perMachine": true,
       "allowToChangeInstallationDirectory": true,
       "runAfterFinish": false,
-      "createDesktopShortcut": true
+      "createDesktopShortcut": true,
+      "installerSidebar": "dashfile_sidebar.bmp"
     },
     "fileAssociations": [
       {
