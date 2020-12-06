@@ -23,10 +23,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-        env:
-          GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       - run: npm i
       - run: npm run ci
+        env:
+          GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
       - uses: actions/upload-artifact@v2
         with:
