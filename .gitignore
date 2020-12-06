@@ -1,5 +1,6 @@
-# Dashfile Builds
+# Dashfile
 build
+electron-builder.env
 
 # Logs
 logs

@@ -1,0 +1,2 @@
+# Ignore CI config
+.github/workflows/*

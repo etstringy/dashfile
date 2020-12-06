@@ -1,10 +1,13 @@
 import { app, BrowserWindow } from "electron";
 import path from "path";
 import GJ_IPC from "./ipc";
+import GJ_AutoUpdater from "./autoupdater";
+
+let window: BrowserWindow;
 
 function init() {
-  const window = new BrowserWindow({
-    height: 800,
+  window = new BrowserWindow({
+    height: 600,
     width: 1000,
     webPreferences: {
       nodeIntegration: true,
@@ -17,6 +20,7 @@ function init() {
 
 app.on("ready", () => {
   init();
+  GJ_AutoUpdater(window);
 });
 
 GJ_IPC();

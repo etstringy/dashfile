@@ -3,10 +3,11 @@
   "version": "1.5.2",
   "description": "Create files from Geometry Dash levels, and add them to your game with this simple program.",
   "main": "dist/index.js",
-  "repository": "https://github.com/etstringy/dashfile",
+  "repository": "https://github.com/etstringy/dashfile.git",
   "author": "etstringy",
   "license": "MIT",
   "dependencies": {
+    "electron-updater": "^4.3.5",
     "jquery": "^3.5.1",
     "xml-js": "^1.6.11"
   },
@@ -24,14 +25,13 @@
     "typescript": "^4.1.2"
   },
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc -w",
-    "lint": "eslint -c .eslintrc.js --ext .ts ./src",
-    "start": "npm run build && electron ./dist/index.js",
+    "start": "tsc && electron ./dist/index.js",
     "dist": "yarn build && electron-builder",
+    "build": "tsc && electron-builder build --windows -p never",
+    "build_production": "tsc && electron-builder build --windows -p always",
     "ci_makedirs": "mkdir dist",
     "ci_compile": "tsc",
-    "ci": "npm run ci_makedirs && npm run ci_compile && electron-builder build --windows -p never"
+    "ci": "npm run ci_makedirs && npm run ci_compile && electron-builder build --windows"
   },
   "build": {
     "appId": "software.stringy.dashfile",
@@ -52,7 +52,7 @@
     },
     "win": {
       "target": "nsis",
-      "icon": "dashfile_logo.png",
+      "icon": "assets/dashfile_icon.ico",
       "legalTrademarks": "Copyright © 2020 Stringy Software",
       "publisherName": "Stringy Software"
     },
@@ -62,14 +62,16 @@
       "allowToChangeInstallationDirectory": true,
       "runAfterFinish": false,
       "createDesktopShortcut": true,
-      "installerSidebar": "dashfile_sidebar.bmp"
+      "installerSidebar": "dashfile_sidebar.bmp",
+      "uninstallerSidebar": "dashfile_sidebar.bmp",
+      "installerIcon": "assets/dashfile_icon.ico"
     },
     "fileAssociations": [
       {
         "ext": "dash",
         "name": "Dash",
         "description": "Geometry Dash Level",
-        "icon": "dashfile_logo.png"
+        "icon": "assets/dashfile_icon.ico"
       }
     ]
   }

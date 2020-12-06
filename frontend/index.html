@@ -12,31 +12,52 @@
     <main class="gj_main" style="display: none">
       <!-- <main class="gj_main"> -->
       <div class="gj_main_title">
-        <img src="assets/dashfile.png" width="300px" />
-        <p class="gj_main_title_text">v0.0.0 by etstringy</p>
-        <div class="gj_boxcontainer">
-          <div class="gj_box">
-            <h1 class="gj_box_title">Create .dash file</h1>
-            <div style="overflow: auto">
-              <table id="createFileTable" style="width: 100%; height: 210px">
-                <tr>
-                  <th>Level name</th>
-                  <th>Actions</th>
-                </tr>
-                <tr>
-                  <td>Test1</td>
-                  <td><button>Create file</button></td>
-                </tr>
-              </table>
+        <div class="gj_container_main">
+          <div class="gj_box_sc supercenter">
+            <div class="gj_box_maintitle">
+              <img src="assets/dashfile.png" width="300px" />
+              <p class="gj_main_title_text">v0.0.0 by etstringy</p>
+            </div>
+
+            <div class="gj_box_main_btns">
+              <button class="btn-gren" onclick="showCreator()">
+                Create dash file</button
+              ><br />
+              <button class="btn-gren" onclick="injectFile()">
+                Inject dash file</button
+              ><br />
+              <button class="btn-blue">Options</button><br />
+            </div>
+
+            <div class="gj_box_updates">
+              <p>
+                Checking for updates..
+                <img class="spin" src="./assets/loading.png" width="20px" />
+              </p>
             </div>
           </div>
-          <!-- <div class="gj_box"></div> -->
         </div>
-        <div class="gj_boxcontainer">
-          <div class="gj_box">
-            <button onclick="injectFile()">Open .dash file</button>
+
+        <div class="gj_container_createFile" style="display: none">
+          <div class="gj_boxcontainer">
+            <div class="gj_box">
+              <h1 class="gj_box_title">Create .dash file</h1>
+              <button class="gj_box_back" onclick="hideCreator()">Back</button>
+              <div style="overflow: auto">
+                <table id="createFileTable" style="width: 100%; height: 420px">
+                  <tr>
+                    <th>Level Name</th>
+                    <th>Editor Time</th>
+                    <th>Song ID</th>
+                    <th>Actions</th>
+                  </tr>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
+
+        <!-- <button onclick="injectFile()">Open .dash file</button> -->
       </div>
     </main>
 
