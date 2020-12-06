@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
         env:
-          GH_TOKEN: {{ secrets.ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       - run: npm i
       - run: npm run ci
 
