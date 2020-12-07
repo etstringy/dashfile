@@ -8,13 +8,16 @@ function showPage() {
   $(".gj_spinner").hide();
 }
 
+let paths;
+
 window.onload = async () => {
   console.log("Dashfile");
   setTimeout(showPage, 2500);
 
   // App Version
   let AppVersion = await ipcRenderer.invoke("GJ_AppVersion");
-  $(".gj_main_title_text").html(`v${AppVersion} by etstringy`);
+  $(".gj_main_title_text").html(`v${AppVersion.version} by etstringy`);
+  paths = AppVersion.paths;
 
   // [TEST] Get File
   let LocalLevels = await ipcRenderer.invoke("GJ_GetLevelFile");
@@ -122,6 +125,14 @@ async function createFile(i) {
 
 async function injectFile() {
   await ipcRenderer.invoke("GJ_InjectDashFile");
+}
+
+async function openBackup() {
+  shell.openPath(paths.Backup);
+}
+
+async function openGJFolder() {
+  shell.openPath(paths.GD);
 }
 
 async function showCreator() {

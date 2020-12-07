@@ -7,6 +7,7 @@ import { SuccessBox, WriteErrorBox, InvalidDFBox, OpenDialog } from "./boxes";
 const crypto: Crypto = new Crypto();
 const paths = {
   CCLL: `${app.getPath("home")}/AppData/Local/GeometryDash/CCLocalLevels.dat`,
+  GD: `${app.getPath("home")}/AppData/Local/GeometryDash`,
   BackupCCLL: `${app.getPath("userData")}/Backups/CCLocalLevels.dat`,
   Backup: `${app.getPath("userData")}/Backups`,
 };
@@ -14,7 +15,7 @@ const paths = {
 function GJ_IPC(): void {
   ipcMain.handle("GJ_AppVersion", async () => {
     console.log("[IPC] Recieved GJ_AppVersion");
-    return "1.2.2";
+    return { version: "1.2.2", paths };
   });
 
   ipcMain.handle("GJ_GetLevelFile", async () => {
