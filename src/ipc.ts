@@ -1,21 +1,23 @@
-import { ipcMain, app, dialog } from "electron";
+import { ipcMain, dialog } from "electron";
 import fs from "fs";
-import convert, { Element } from "xml-js";
+import convert from "xml-js";
+import GJ_AutoUpdater from "./autoupdater";
 import Crypto from "./decode";
-import { SuccessBox, WriteErrorBox, InvalidDFBox, OpenDialog } from "./boxes";
+import { Inject, InjectStatus } from "./inject";
+import paths from "./paths";
+import { OpenDialog, SuccessBox, WriteErrorBox, InvalidDFBox } from "./boxes";
+import { window } from "./index";
 
 const crypto: Crypto = new Crypto();
-const paths = {
-  CCLL: `${app.getPath("home")}/AppData/Local/GeometryDash/CCLocalLevels.dat`,
-  GD: `${app.getPath("home")}/AppData/Local/GeometryDash`,
-  BackupCCLL: `${app.getPath("userData")}/Backups/CCLocalLevels.dat`,
-  Backup: `${app.getPath("userData")}/Backups`,
-};
+const inject: Inject = new Inject();
 
 function GJ_IPC(): void {
   ipcMain.handle("GJ_AppVersion", async () => {
     console.log("[IPC] Recieved GJ_AppVersion");
-    return { version: "1.2.2", paths };
+
+    // sneaky owo
+    GJ_AutoUpdater();
+    return { version: "1.6.4", paths };
   });
 
   ipcMain.handle("GJ_GetLevelFile", async () => {
@@ -36,13 +38,15 @@ function GJ_IPC(): void {
     async (e: Electron.IpcMainInvokeEvent, ...args) => {
       console.log("[IPC] Recieved GJ_MakeDashFile");
 
+      window.webContents.send("show_modal", "Creating level file..");
+
       const levelData: string = args.join();
       const savePath: string | undefined = dialog.showSaveDialogSync({
         title: "Save dash file as",
         filters: [{ name: "Dashfile", extensions: ["dash"] }],
       });
 
-      if (savePath == undefined) return "Operation cancelled.";
+      if (savePath == undefined) return window.webContents.send("hide_modal");
 
       try {
         fs.writeFileSync(savePath, levelData);
@@ -50,6 +54,7 @@ function GJ_IPC(): void {
         return "Error writing file!";
       }
 
+      window.webContents.send("hide_modal");
       return "OK";
     }
   );
@@ -59,49 +64,22 @@ function GJ_IPC(): void {
     console.log("[IPC] Recieved GJ_InjectDashFile");
 
     const openPath: string[] | undefined = dialog.showOpenDialogSync(OpenDialog);
-    if (openPath == undefined) return "Operation cancelled.";
+    if (openPath == undefined) return window.webContents.send("hide_modal");
 
-    let levelData: string | Buffer = fs.readFileSync(openPath[0], "utf8");
-    levelData = Buffer.from(levelData, "base64");
-    levelData = levelData.toString("ascii");
+    window.webContents.send("show_modal", "Injecting level into game save..");
+    const injection: InjectStatus = await inject.injectFile(openPath[0])
+    window.webContents.send("hide_modal");
 
-    let LocalLevels: string = fs.readFileSync(paths.CCLL, "utf8");
-    LocalLevels = crypto.decode(LocalLevels);
-
-    // Valid file check
-    if (!levelData.startsWith(`{"declaration":{"attributes":{"version":"1.0"}}`)) return dialog.showMessageBox(InvalidDFBox);
-
-    // BACKUP LOCALLEVELS
-    console.log("[SAVEFILE] Backing up CCLocalLevels.dat");
-    if (!fs.existsSync(paths.Backup)) { fs.mkdirSync(paths.Backup); }
-    fs.renameSync(paths.CCLL, paths.BackupCCLL);
-
-    LocalLevels = convert.xml2json(LocalLevels);
-
-    const LLJ: Element = JSON.parse(LocalLevels);
-    const toInject: Element = JSON.parse(levelData).elements;
-
-    const LevelsArray = LLJ.elements[0].elements[0].elements[1].elements
-
-
-    for (let i = 2; i < LevelsArray.length; i++) {
-      if (i % 2 == 0) {
-        const levelid: string | number | boolean = LevelsArray[i].elements[0].text;
-        LevelsArray[i].elements[0].text = parseInt(levelid.toString().split("_")[1]) + 1
-      }
+    switch(injection.status){
+      case "success":
+        dialog.showMessageBox(SuccessBox);
+        return;
+      case "WriteError":
+        dialog.showMessageBox(WriteErrorBox);
+        return
+      case "InvalidFile":
+        dialog.showMessageBox(InvalidDFBox);
     }
-
-    // Add Levelchunk and level to Array
-    LevelsArray.splice(2, 0, { type: "element", name: "k", elements: [{ text: "k_0", type: "text" }]});
-    LevelsArray.splice(3, 0, toInject);
-
-    const toSave: string = convert.json2xml(JSON.stringify(LLJ));
-
-    try {
-      console.log("[SAVEFILE] Writing CCLocalLevels.dat");
-      fs.writeFileSync(paths.CCLL, toSave, { encoding: "utf8", flag: "w" });
-    } catch { return dialog.showMessageBox(WriteErrorBox); }
-    return dialog.showMessageBox(SuccessBox);
   });
   // prettier-ignore-end
 }

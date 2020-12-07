@@ -114,6 +114,10 @@ th div {
   height: 50px;
 }
 
+.gj_box_back:hover {
+  background-color: rgb(238, 94, 94);
+}
+
 .gj_box_main_btns {
   text-align: center;
   margin-top: 40px;
@@ -188,7 +192,43 @@ table button {
 
 button:hover {
   cursor: pointer;
-  transition: 0s;
+  transition: 0.1s;
+}
+
+.gj_blind {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  position: absolute;
+  top: 0;
+}
+
+.gj_modal {
+  text-align: center;
+  z-index: 1500;
+  color: #000;
+  background-color: #23272a;
+  width: 300px;
+  height: 400px;
+  padding: 5px;
+  border-radius: 15px;
+}
+
+.gj_modal_loading {
+  text-align: center;
+  margin-top: 20%;
+}
+
+.gj_modal h5 {
+  margin-left: 20px;
+  margin-right: 20px;
+  word-wrap: break-word;
+  overflow: auto;
+  margin-top: 75px;
+  color: #fff;
+  font-size: 25px;
+  font-weight: normal;
 }
 
 .supercenter {

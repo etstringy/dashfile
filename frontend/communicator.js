@@ -87,7 +87,7 @@ window.onload = async () => {
 };
 
 ipcRenderer.on("update_notification", (e, args) => {
-  let res = args[0];
+  let res = args;
   if (res.downloaded) {
     $(".gj_box_updates_text").html(
       `<img src="./assets/success.png" width="25px" /> Restart to apply updates`
@@ -105,6 +105,17 @@ ipcRenderer.on("update_notification", (e, args) => {
       `<img src="./assets/success.png" width="25px" /> No updates available`
     );
   }
+});
+
+ipcRenderer.on("show_modal", (e, args) => {
+  $(".gj_modal_text").html(args);
+  $(".gj_blind").show();
+  $(".gj_modal").show();
+});
+
+ipcRenderer.on("hide_modal", (e, args) => {
+  $(".gj_blind").hide();
+  $(".gj_modal").hide();
 });
 
 async function createFile(i) {

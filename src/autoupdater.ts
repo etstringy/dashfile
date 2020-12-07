@@ -2,24 +2,31 @@ import { BrowserWindow } from "electron";
 import { autoUpdater } from "electron-updater";
 import { ipcMain } from "electron";
 
+import { window } from "./index";
+
 function GJ_AutoUpdater(): void {
   autoUpdater.logger = console;
-  autoUpdater.checkForUpdatesAndNotify();
+  try {
+    autoUpdater.checkForUpdatesAndNotify();
+  } catch (err) {
+    console.log(err);
+    window.webContents.send("update_notification", { error: true });
+  }
 
   autoUpdater.on("update-available", () => {
-    ipcMain.emit("update_notification", { available: true });
+    window.webContents.send("update_notification", { available: true });
   });
 
   autoUpdater.on("update-not-available", () => {
-    ipcMain.emit("update_notification", { available: false });
+    window.webContents.send("update_notification", { available: false });
   });
 
   autoUpdater.on("update-downloaded", () => {
-    ipcMain.emit("update_notification", { downloaded: true });
+    window.webContents.send("update_notification", { downloaded: true });
   });
 
   autoUpdater.on("error", () => {
-    ipcMain.emit("update_notification", { error: true });
+    window.webContents.send("update_notification", { error: true });
   });
 }
 
