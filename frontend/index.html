@@ -26,13 +26,20 @@
               <button class="btn-gren" onclick="injectFile()">
                 Inject dash file</button
               ><br />
-              <button class="btn-blue">Options</button><br />
+              <button class="btn-blue" onclick="showOptions()">Options</button
+              ><br />
             </div>
 
+            <div class="gj_box_error">
+              <p class="gj_error" style="display: none">
+                <img src="./assets/error.png" width="25px" />
+                Error! User has big stupid!
+              </p>
+            </div>
             <div class="gj_box_updates">
-              <p>
+              <p class="gj_box_updates_text">
+                <img class="spin" src="./assets/loading.png" width="25px" />
                 Checking for updates..
-                <img class="spin" src="./assets/loading.png" width="20px" />
               </p>
             </div>
           </div>
@@ -53,6 +60,15 @@
                   </tr>
                 </table>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="gj_container_options" style="display: none">
+          <div class="gj_boxcontainer">
+            <div class="gj_box">
+              <h1 class="gj_box_title">Options</h1>
+              <button class="gj_box_back" onclick="hideOptions()">Back</button>
             </div>
           </div>
         </div>

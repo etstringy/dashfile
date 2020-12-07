@@ -138,6 +138,25 @@ th div {
   vertical-align: middle;
 }
 
+.gj_box_error {
+  position: absolute;
+  bottom: 40px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gj_box_error p {
+  margin-bottom: 0;
+  margin-top: 0;
+  color: #fff;
+}
+
+.gj_box_error img {
+  vertical-align: middle;
+}
+
 button {
   color: #fff;
   font-size: 20px;

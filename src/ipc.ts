@@ -20,11 +20,14 @@ function GJ_IPC(): void {
   ipcMain.handle("GJ_GetLevelFile", async () => {
     console.log("[IPC] Recieved GJ_GetLevelFile");
 
-    let LocalLevels: string = fs.readFileSync(paths.CCLL, "utf8");
-
-    LocalLevels = crypto.decode(LocalLevels);
-    LocalLevels = convert.xml2json(LocalLevels);
-    return LocalLevels;
+    try {
+      let LocalLevels: string = fs.readFileSync(paths.CCLL, "utf8");
+      LocalLevels = crypto.decode(LocalLevels);
+      LocalLevels = convert.xml2json(LocalLevels);
+      return LocalLevels;
+    } catch {
+      return "FileError";
+    }
   });
 
   ipcMain.handle(

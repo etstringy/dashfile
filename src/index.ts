@@ -20,7 +20,7 @@ function init() {
 
 app.on("ready", () => {
   init();
-  GJ_AutoUpdater(window);
+  GJ_AutoUpdater();
 });
 
 GJ_IPC();

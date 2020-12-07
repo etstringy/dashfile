@@ -18,6 +18,13 @@ window.onload = async () => {
 
   // [TEST] Get File
   let LocalLevels = await ipcRenderer.invoke("GJ_GetLevelFile");
+
+  if (LocalLevels == "FileError") {
+    $(".gj_error").html(`<img src="./assets/error.png" width="25px" />
+    Error reading save file!`);
+    $(".gj_error").show();
+  }
+
   LocalLevels = JSON.parse(LocalLevels);
   console.log(LocalLevels);
 
@@ -76,6 +83,27 @@ window.onload = async () => {
   window.levels = levels;
 };
 
+ipcRenderer.on("update_notification", (e, args) => {
+  let res = args[0];
+  if (res.downloaded) {
+    $(".gj_box_updates_text").html(
+      `<img src="./assets/success.png" width="25px" /> Restart to apply updates`
+    );
+  } else if (res.error) {
+    $(".gj_box_updates_text").html(
+      `<img src="./assets/error.png" width="25px" /> Error checking for updates!`
+    );
+  } else if (res.available) {
+    $(".gj_box_updates_text").html(`
+    <img class="spin" src="./assets/loading.png" width="25px" />
+    Downloading updates..`);
+  } else {
+    $(".gj_box_updates_text").html(
+      `<img src="./assets/success.png" width="25px" /> No updates available`
+    );
+  }
+});
+
 async function createFile(i) {
   await ipcRenderer.invoke(
     "GJ_MakeDashFile",
@@ -104,6 +132,16 @@ async function showCreator() {
 async function hideCreator() {
   $(".gj_container_main").show();
   $(".gj_container_createFile").hide();
+}
+
+async function showOptions() {
+  $(".gj_container_main").hide();
+  $(".gj_container_options").show();
+}
+
+async function hideOptions() {
+  $(".gj_container_main").show();
+  $(".gj_container_options").hide();
 }
 
 async function openLink(url) {
