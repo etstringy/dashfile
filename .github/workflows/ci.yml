@@ -23,10 +23,16 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+          
       - run: npm i
       - run: npm run ci
         env:
           GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
+      - uses: kolpav/purge-artifacts-action@v1
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          expire-in: 3days 
 
       - uses: actions/upload-artifact@v2
         with:
@@ -37,3 +43,4 @@ jobs:
         with:
           name: DashfileStandalone
           path: ./build/win-unpacked
+      delete-artifacts:

@@ -1,0 +1,82 @@
+body {
+  color: #000;
+  background: linear-gradient(
+    90deg,
+    rgba(119, 118, 255, 1) 0%,
+    rgba(174, 44, 241, 1) 100%
+  );
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+a {
+  color: rgb(142, 149, 243);
+}
+
+table,
+th,
+td {
+  color: #000;
+}
+
+.gj_box {
+  color: #000;
+  background: white;
+}
+
+.gj_box_sc {
+  color: #000;
+  background-color: white;
+}
+
+.gj_main_title_text {
+  color: #000;
+}
+
+.gj_box_title {
+  color: #000;
+}
+
+.gj_box_back {
+  background-color: rgb(223, 74, 74);
+}
+
+.gj_box_back:hover {
+  background-color: rgb(238, 94, 94);
+}
+
+.gj_box_updates p {
+  color: #000;
+}
+
+.gj_box_error p {
+  color: #000;
+}
+
+button {
+  color: #fff;
+}
+
+.btn-gren {
+  background-color: #32cc72;
+}
+.btn-gren:hover {
+  background-color: #2aad61;
+}
+.btn-blue {
+  background-color: #2e51ec;
+}
+.btn-blue:hover {
+  background-color: #2541bd;
+}
+
+.gj_modal {
+  color: #000;
+  background-color: white;
+}
+
+.gj_modal h5 {
+  color: #000;
+}

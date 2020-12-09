@@ -12,6 +12,10 @@ let paths;
 
 window.onload = async () => {
   console.log("Dashfile");
+
+  if (!localStorage.isDarkTheme)
+    $("#themeStylesheet").attr("href", "./themes/light.css");
+
   setTimeout(showPage, 2500);
 
   // App Version
@@ -117,6 +121,18 @@ ipcRenderer.on("hide_modal", (e, args) => {
   $(".gj_blind").hide();
   $(".gj_modal").hide();
 });
+
+async function setTheme(theme) {
+  switch (theme) {
+    case "dark":
+      localStorage.isDarkTheme = true;
+      break;
+    case "light":
+      localStorage.isDarkTheme = false;
+      break;
+  }
+  localStorage.isDarkTheme = localStorage.isDarkTheme ? false : true;
+}
 
 async function createFile(i) {
   await ipcRenderer.invoke(

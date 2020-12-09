@@ -7,13 +7,6 @@
 /* CSS */
 
 body {
-  color: #fff;
-  /* background: linear-gradient(#0065fd, #002e73); */
-  background-color: #2c2f33;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
   margin: 0;
   font-family: Helvetica, Arial;
 }
@@ -26,7 +19,6 @@ body {
 }
 
 a {
-  color: rgb(142, 149, 243);
   text-decoration: none;
 }
 
@@ -36,7 +28,6 @@ td {
   /* border: 1px solid black; */
   background-color: transparent;
   border-radius: 5px;
-  color: white;
 }
 
 td,
@@ -65,11 +56,8 @@ th div {
 }
 
 .gj_box {
-  color: #000;
   display: block;
   margin: 0px 15px 0px 15px;
-  /* background-color: #23272a; */
-  background-color: #23272a;
   width: 100%;
   height: 500px;
   padding: 2px;
@@ -78,10 +66,7 @@ th div {
 }
 
 .gj_box_sc {
-  color: #000;
   display: block;
-  /* background-color: #23272a; */
-  background-color: #23272a;
   width: 500px;
   height: 500px;
   padding: 5px;
@@ -95,27 +80,20 @@ th div {
 
 .gj_main_title_text {
   margin: 0;
-  color: #fff;
 }
 
 .gj_box_title {
-  color: #fff;
   text-align: center;
   font-size: 50px;
   margin: 5px 0px 0px 5px;
 }
 
 .gj_box_back {
-  background-color: rgb(223, 74, 74);
   position: absolute;
   top: 5px;
   left: 5px;
   width: 100px;
   height: 50px;
-}
-
-.gj_box_back:hover {
-  background-color: rgb(238, 94, 94);
 }
 
 .gj_box_main_btns {
@@ -135,7 +113,6 @@ th div {
 .gj_box_updates p {
   margin-bottom: 0;
   margin-top: 0;
-  color: #fff;
 }
 
 .gj_box_updates img {
@@ -154,7 +131,6 @@ th div {
 .gj_box_error p {
   margin-bottom: 0;
   margin-top: 0;
-  color: #fff;
 }
 
 .gj_box_error img {
@@ -162,7 +138,6 @@ th div {
 }
 
 button {
-  color: #fff;
   font-size: 20px;
   width: 200px;
   height: 50px;
@@ -175,19 +150,6 @@ button {
 table button {
   width: 200px;
   height: 30px;
-}
-
-.btn-gren {
-  background-color: #32cc72;
-}
-.btn-gren:hover {
-  background-color: #2aad61;
-}
-.btn-blue {
-  background-color: #2e51ec;
-}
-.btn-blue:hover {
-  background-color: #2541bd;
 }
 
 button:hover {
@@ -207,8 +169,6 @@ button:hover {
 .gj_modal {
   text-align: center;
   z-index: 1500;
-  color: #000;
-  background-color: #23272a;
   width: 300px;
   height: 400px;
   padding: 5px;
@@ -226,7 +186,6 @@ button:hover {
   word-wrap: break-word;
   overflow: auto;
   margin-top: 75px;
-  color: #fff;
   font-size: 25px;
   font-weight: normal;
 }
