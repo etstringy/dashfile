@@ -16,7 +16,7 @@ function GJ_IPC(): void {
     console.log("[IPC] Recieved GJ_AppVersion");
 
     GJ_AutoUpdater();
-    return { version: "1.7.0", paths };
+    return { version: "1.7.3", paths };
   });
 
   ipcMain.handle("GJ_DevTools", async () => {
