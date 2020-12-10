@@ -15,9 +15,8 @@ function GJ_IPC(): void {
   ipcMain.handle("GJ_AppVersion", async () => {
     console.log("[IPC] Recieved GJ_AppVersion");
 
-    // sneaky owo
     GJ_AutoUpdater();
-    return { version: "1.6.4", paths };
+    return { version: "1.7.0", paths };
   });
 
   ipcMain.handle("GJ_GetLevelFile", async () => {

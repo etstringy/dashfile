@@ -1,6 +1,6 @@
 {
   "name": "dashfile",
-  "version": "1.6.4",
+  "version": "1.7.0",
   "description": "Create files from Geometry Dash levels, and add them to your game with this simple program.",
   "main": "dist/index.js",
   "repository": "https://github.com/etstringy/dashfile.git",
@@ -78,8 +78,7 @@
       {
         "provider": "github",
         "owner": "etstringy",
-        "repo": "dashfile",
-        "private": true
+        "repo": "dashfile"
       }
     ]
   }
