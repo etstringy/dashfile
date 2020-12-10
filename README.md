@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="640px" height="320px" src="https://disq.me/N64hS.png">
+  <img width="1000px" height="500px" src="https://disq.me/N64hS.png">
   <br/>
   <b>Dashfile</b>
   <br/>
