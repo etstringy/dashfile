@@ -1,3 +1,14 @@
-# dashfile
+<p align="center">
+  <br/>
+  <b>Dashfile</b>
+  <br/>
+  Create files from Geometry Dash levels, and add them to your game with this simple program.
+</p>
 
-Create files from Geometry Dash levels, and add them to your game with this simple program.
+```
+yarn
+yarn start-prod
+
+npm i
+npm start-prod
+```
