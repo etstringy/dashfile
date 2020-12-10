@@ -22,7 +22,8 @@ function GJ_AutoUpdater(): void {
     window.webContents.send("update_notification", { downloaded: true });
   });
 
-  autoUpdater.on("error", () => {
+  autoUpdater.on("error", (error) => {
+    console.log(error);
     window.webContents.send("update_notification", { error: true });
   });
 }

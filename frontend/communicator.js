@@ -208,10 +208,8 @@ String.prototype.toHHMMSS = function () {
   return hours + ":" + minutes + ":" + seconds;
 };
 
-document.addEventListener("keydown", function (e) {
-  if (e.which === 123) {
-    require("remote").getCurrentWindow().toggleDevTools();
-  } else if (e.which === 116) {
-    location.reload();
+document.addEventListener("keydown", async function (e) {
+  if (e.key == "F12") {
+    await ipcRenderer.invoke("GJ_DevTools");
   }
 });

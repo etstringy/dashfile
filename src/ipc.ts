@@ -19,6 +19,13 @@ function GJ_IPC(): void {
     return { version: "1.7.0", paths };
   });
 
+  ipcMain.handle("GJ_DevTools", async () => {
+    console.log("[IPC] Recieved GJ_DevTools");
+
+    window.webContents.openDevTools();
+    return;
+  });
+
   ipcMain.handle("GJ_GetLevelFile", async () => {
     console.log("[IPC] Recieved GJ_GetLevelFile");
 
