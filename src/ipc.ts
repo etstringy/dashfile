@@ -5,7 +5,7 @@ import GJ_AutoUpdater from "./autoupdater";
 import Crypto from "./decode";
 import { Inject, InjectStatus } from "./inject";
 import paths from "./paths";
-import { OpenDialog, SuccessBox, WriteErrorBox, InvalidDFBox } from "./boxes";
+import { OpenDialog, SuccessBox, ErrorBox } from "./boxes";
 import { window } from "./index";
 
 const crypto: Crypto = new Crypto();
@@ -70,15 +70,25 @@ function GJ_IPC(): void {
     const injection: InjectStatus = await inject.injectFile(openPath[0])
     window.webContents.send("hide_modal");
 
-    switch(injection.status){
+    switch (injection.status) {
       case "success":
         dialog.showMessageBox(SuccessBox);
-        return;
+        break;
       case "WriteError":
-        dialog.showMessageBox(WriteErrorBox);
-        return
+        dialog.showMessageBox(ErrorBox("Error writing dash file"));
+        break;
       case "InvalidFile":
-        dialog.showMessageBox(InvalidDFBox);
+        dialog.showMessageBox(ErrorBox("Invalid/Corrupt dash file"));
+        break;
+      case "ReadError_Dash":
+        dialog.showMessageBox(ErrorBox("Error reading dash file"));
+        break;
+      case "ReadError_CCLL":
+        dialog.showMessageBox(ErrorBox("Error reading GD save file"));
+        break;
+      case "BackupError":
+        dialog.showMessageBox(ErrorBox("Error backing up GD save file"));
+        break;
     }
   });
   // prettier-ignore-end

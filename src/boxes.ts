@@ -1,5 +1,3 @@
-import { dialog } from "electron";
-
 const SuccessBox: Electron.MessageBoxOptions = {
   message: "Level added to save file!",
   type: "none",
@@ -26,4 +24,13 @@ const OpenDialog: Electron.OpenDialogOptions = {
   filters: [{ name: "Dashfile", extensions: ["dash"] }],
 };
 
-export { SuccessBox, WriteErrorBox, InvalidDFBox, OpenDialog };
+const ErrorBox = (ErrorText: string): Electron.MessageBoxOptions => {
+  return {
+    message: ErrorText,
+    type: "error",
+    buttons: ["OK"],
+    title: "Error!",
+  };
+};
+
+export { SuccessBox, WriteErrorBox, InvalidDFBox, OpenDialog, ErrorBox };

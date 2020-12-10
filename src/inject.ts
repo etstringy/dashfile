@@ -11,11 +11,13 @@ interface InjectStatus {
 
 class Inject {
   injectFile(path: string): InjectStatus {
-    let levelData: string | Buffer = fs.readFileSync(path, "utf8");
+    let levelData: string | Buffer
+    try { levelData = fs.readFileSync(path, "utf8") } catch { return { status: "ReadError_Dash" } }
     levelData = Buffer.from(levelData, "base64");
     levelData = levelData.toString("ascii");
 
-    let LocalLevels: string = fs.readFileSync(paths.CCLL, "utf8");
+    let LocalLevels: string 
+    try { fs.readFileSync(paths.CCLL, "utf8") } catch { return { status: "ReadError_CCLL" } }
     LocalLevels = crypto.decode(LocalLevels);
 
     // Valid file check
@@ -29,7 +31,9 @@ class Inject {
     if (!fs.existsSync(paths.Backup)) {
       fs.mkdirSync(paths.Backup);
     }
-    fs.renameSync(paths.CCLL, paths.BackupCCLL);
+    fs.rename(paths.CCLL, paths.BackupCCLL, (err) => {
+      if(err) return { status: "BackupError" }
+    });
 
     LocalLevels = convert.xml2json(LocalLevels);
 

@@ -13,8 +13,14 @@ let paths;
 window.onload = async () => {
   console.log("Dashfile");
 
-  if (!localStorage.isDarkTheme)
-    $("#themeStylesheet").attr("href", "./themes/light.css");
+  switch (localStorage.theme) {
+    case "dark":
+      $("#themeStylesheet").attr("href", "./themes/dark.css");
+      break;
+    case "light":
+      $("#themeStylesheet").attr("href", "./themes/light.css");
+      break;
+  }
 
   setTimeout(showPage, 2500);
 
@@ -23,9 +29,8 @@ window.onload = async () => {
   $(".gj_main_title_text").html(`v${AppVersion.version} by etstringy`);
   paths = AppVersion.paths;
 
-  // [TEST] Get File
+  // Get File
   let LocalLevels = await ipcRenderer.invoke("GJ_GetLevelFile");
-
   if (LocalLevels == "FileError") {
     $(".gj_error").html(`<img src="./assets/error.png" width="25px" />
     Error reading save file!`);
@@ -33,7 +38,6 @@ window.onload = async () => {
   }
 
   LocalLevels = JSON.parse(LocalLevels);
-  console.log(LocalLevels);
 
   let rawLevels = LocalLevels.elements[0].elements[0].elements[1].elements;
   let levels = [];
@@ -125,13 +129,13 @@ ipcRenderer.on("hide_modal", (e, args) => {
 async function setTheme(theme) {
   switch (theme) {
     case "dark":
-      localStorage.isDarkTheme = true;
+      localStorage.theme = "dark";
       break;
     case "light":
-      localStorage.isDarkTheme = false;
+      localStorage.theme = "light";
       break;
   }
-  localStorage.isDarkTheme = localStorage.isDarkTheme ? false : true;
+  location.reload();
 }
 
 async function createFile(i) {

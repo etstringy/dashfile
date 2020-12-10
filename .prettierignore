@@ -1,2 +1,5 @@
 # Ignore CI config
 .github/workflows/*
+
+# fuck you prettier i like one liners
+src/inject.ts

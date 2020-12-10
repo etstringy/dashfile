@@ -1,7 +1,4 @@
-import { BrowserWindow } from "electron";
 import { autoUpdater } from "electron-updater";
-import { ipcMain } from "electron";
-
 import { window } from "./index";
 
 function GJ_AutoUpdater(): void {

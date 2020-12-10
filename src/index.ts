@@ -1,8 +1,8 @@
-import { app, BrowserWindow, dialog, ipcMain } from "electron";
+import { app, BrowserWindow, dialog } from "electron";
 import path from "path";
 import GJ_IPC from "./ipc";
 import { Inject, InjectStatus } from "./inject";
-import { SuccessBox, WriteErrorBox, InvalidDFBox } from "./boxes";
+import { SuccessBox, ErrorBox } from "./boxes";
 
 let window: BrowserWindow;
 
@@ -32,12 +32,22 @@ app.on("ready", async () => {
     switch (injection.status) {
       case "success":
         dialog.showMessageBox(SuccessBox);
-        return;
+        break;
       case "WriteError":
-        dialog.showMessageBox(WriteErrorBox);
-        return;
+        dialog.showMessageBox(ErrorBox("Error writing dash file"));
+        break;
       case "InvalidFile":
-        dialog.showMessageBox(InvalidDFBox);
+        dialog.showMessageBox(ErrorBox("Invalid/Corrupt dash file"));
+        break;
+      case "ReadError_Dash":
+        dialog.showMessageBox(ErrorBox("Error reading dash file"));
+        break;
+      case "ReadError_CCLL":
+        dialog.showMessageBox(ErrorBox("Error reading GD save file"));
+        break;
+      case "BackupError":
+        dialog.showMessageBox(ErrorBox("Error backing up GD save file"));
+        break;
     }
   } else {
     init();
