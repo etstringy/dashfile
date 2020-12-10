@@ -1,12 +1,9 @@
-<p align="center">
-  <img src="https://disq.me/N64hS.png">
-  <br/>
-  <b>Dashfile</b>
-  <br/>
-  Create files from Geometry Dash levels, and add them to your game with this simple program.
-</p>
+![Dashfile_Banner](https://disq.me/N64hS.png)
+  
+> **Dashfile**
+> Create files from Geometry Dash levels, and add them to your game with this simple program.
 
-<a href="https://github.com/etstringy/dashfile/releases"><h3>Download here!</h3></a>
+### [Download here!](https://github.com/etstringy/dashfile/releases)
 
 Development:
 ```
