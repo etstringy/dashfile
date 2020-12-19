@@ -1,3 +1,5 @@
+> Note: Dashfile has been discontinued/cancelled because a fair bit after the release of Dashfile, it was brought to my attention that [GDShare](https://github.com/HJfod/gdshare) exists, and will probably have better functionality than my silly program.
+
 ![Dashfile_Banner](https://disq.me/N64hS.png)
   
 ### **Dashfile**
